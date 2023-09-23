@@ -30,6 +30,8 @@ h1 {
   border-bottom: 1px solid #F1F1F1;
 }
 
+.item i {cursor: pointer;}
+
 .item:last-child {
   border-bottom: 0;
 }
@@ -56,7 +58,7 @@ form {
   margin-left: 20px;
 }
 
-button {
+.submit-btn {
   min-height: 50px;
   width: 50px;
   border-radius: 50%;

@@ -5,18 +5,33 @@
   </div>
 
   <div class="box">
-    <ul>
+
+    <form class="item" action="/item" method="post">
+      <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+      <button type="submit" class="submit-btn" name="list" value=<%= listTitle %>>+</button>
+    </form>
+
+
+    <ul class="px-2 pb-4">
       <%  for (var i=0; i<newListItems.length; i++) { %>
-      <div class="item">
-        <input id="<%= newListItems[i]._id %>" type="checkbox">
-        <label for="<%= newListItems[i]._id %>"> <%= newListItems[i].item %> </label>
+      <div class="item justify-content-between">
+        <div class="d-flex w-75 align-items-baseline" style="word-break: break-all;">
+          <input id="<%= newListItems[i]._id %>" type="checkbox">
+          <label for="<%= newListItems[i]._id %>"> <%= newListItems[i].item %> </label>
+        </div>
+
+        <div class="d-flex w-25 justify-content-center">
+          <span>
+            <i data-action="edit" data-content="<%= newListItems[i].item %>" data-item-id="<%= newListItems[i]._id %>" style="width: 16px; height: 16px;" class="fa fa-edit mx-2" aria-hidden="true"></i>
+          </span>
+          
+          <span><i data-action="delete" data-item-id="<%= newListItems[i]._id %>" style="width: 16px; height: 16px;" class="fa fa-trash mx-2" aria-hidden="true"></i></span>
+        </div>
+
       </div>
       <%  } %>
     </ul>
-    <form class="item" action="/" method="post">
-      <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-      <button type="submit" name="list" value=<%= listTitle %>>+</button>
-    </form>
+    
   </div>
 
   <%- include("footer") -%>

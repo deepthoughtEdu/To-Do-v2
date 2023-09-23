@@ -15,6 +15,7 @@ async function setupExpressApp() {
 
     app.use(express.static("public")); //to add our static css file to the server
 
+    app.use(express.json());
 
     // Mounting routes
     app.use("/", routes);
@@ -22,10 +23,15 @@ async function setupExpressApp() {
 
 
 database.initializeConnection().then(async function () {
+    const PORT = process.env.PORT;
+
+    if (!PORT) {
+        throw new Error('PORT has not been declared in the .env file');
+    }
 
     await setupExpressApp();
     
-    app.listen(process.env.PORT, function() {
-      console.log("Server started on port ", process.env.PORT);
+    app.listen(PORT, function() {
+      console.log("Server started on port ", PORT);
     })
 })
