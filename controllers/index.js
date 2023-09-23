@@ -11,6 +11,7 @@ async function getTodoList (req, res) {
 
     const pageData = {
         listTitle: today,
+        completed: false,
         newListItems: listItems
       };
 
@@ -53,6 +54,7 @@ async function updateTodoItem (req, res) {
 }
 
 
+
 async function deleteTodoItem (req, res) {
     const itemId = req.params.id;
 
@@ -75,4 +77,10 @@ async function getWorkList (req, res) {
     res.render("list", pageData);
 }
 
-module.exports = {getTodoList, getWorkList, createTodoItem, updateTodoItem, deleteTodoItem};
+module.exports = {
+    getTodoList,
+    getWorkList,
+    createTodoItem,
+    updateTodoItem,
+    deleteTodoItem,
+};

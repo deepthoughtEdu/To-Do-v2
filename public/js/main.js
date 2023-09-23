@@ -1,4 +1,4 @@
-$('body').on('click', '[data-action]', function () {
+$('body').off('click').on('click', '[data-action]', function () {
     const data = $(this).data();
     const {action, itemId, content} = data;
 

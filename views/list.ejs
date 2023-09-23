@@ -16,8 +16,10 @@
       <%  for (var i=0; i<newListItems.length; i++) { %>
       <div class="item justify-content-between">
         <div class="d-flex w-75 align-items-baseline" style="word-break: break-all;">
-          <input id="<%= newListItems[i]._id %>" type="checkbox">
-          <label for="<%= newListItems[i]._id %>"> <%= newListItems[i].item %> </label>
+          <input id="<%= newListItems[i]._id %>" type="checkbox" <% if (newListItems[i].completed) { %>
+           checked
+          <% } %>>
+          <label data-complete-id="<%= newListItems[i]._id %>" for="<%= newListItems[i]._id %>"> <%= newListItems[i].item %> </label>
         </div>
 
         <div class="d-flex w-25 justify-content-center">
