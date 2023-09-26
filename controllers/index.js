@@ -48,9 +48,9 @@ async function updateTodoItem (req, res) {
         updatedAt: now,
     }
 
-    await todoListCollection.findOneAndUpdate({_id: new ObjectId(itemId)}, {$set: todoItem});
+    await todoListCollection.findOneAndUpdate({_id: new ObjectId(itemId)}, { todoItem});
 
-    res.status(200).json({message: 'Updated successfully!'})
+    res.status(200).json({});
 }
 
 
@@ -62,7 +62,7 @@ async function deleteTodoItem (req, res) {
         return res.status(400).send(`<h1>An invalid item id was sent in the request body</h1>`);
     }
 
-    await todoListCollection.findOneAndDelete({_id: new ObjectId(itemId)});
+    await todoListCollection.findOneAndDelete({id: new ObjectId(itemId)});
 
     res.status(200).json({message: 'Deleted successfully!'})
 }

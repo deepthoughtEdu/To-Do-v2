@@ -25,12 +25,14 @@ function handleTodoDeleteAction(data) {
         confirmButtonText: 'Yes, delete it!',
 
         preConfirm: (content) => {
-          return fetch(url, {method: "DELETE"}).then(response => {
-              if (!response.ok) {
-                throw new Error(response.statusText)
-              }
+          return fetch(url, {method: "DELETE"}).then(async response => {
+            const res = await response.json();
 
-              return response.json();
+            if (!response.ok) {
+              throw new Error(res.message)
+            }
+
+            return res;
 
             }).catch(error => {
                 Swal.showValidationMessage(error)
@@ -69,12 +71,14 @@ function handleTodoEditAction(data) {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({newItem: content}),
-          }).then(response => {
+          }).then(async response => {
+              const res = await response.json();
+
               if (!response.ok) {
-                throw new Error(response.statusText)
+                throw new Error(res.message)
               }
 
-              return response.json();
+              return res;
 
             }).catch(error => {
                 Swal.showValidationMessage(error)
@@ -85,7 +89,7 @@ function handleTodoEditAction(data) {
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire({
-            title: result.value.message,
+            title: 'Updated!',
           }).then(() => location.reload())
         }
       })
